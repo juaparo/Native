@@ -1,51 +1,42 @@
+
 import React from 'react';
 import { Button, SectionList, StyleSheet, Text, View , FlatList} from 'react-native';
-import {Constants} from 'expo'
-
+import { Constants } from 'expo'
+import { createStackNavigator } from 'react-navigation'
 import contacts, {compareNames} from './contacts'
-import Row from './Row'
-import ContactsList from './ContactList'
-import ContactForm from './ContactForm'
+import AddContactScreen from './screens/AddContactScreen';
+import ContactListScreen from './screens/ContactListScreen';
+
+
+const AppNavigator = createStackNavigator({
+  AddContact: {
+    screen: AddContactScreen
+  },
+  ContactList: {
+    screen: ContactListScreen
+  }
+},{
+  initialRouteName: 'ContactList'
+})
 
 export default class App extends React.Component {
     state = {
-      showContacts: true,
-      showForm: false,
       contacts: contacts
     }
 
   addContact = newContact => {
-    this.setState(prevState => ({ showForm: false, contacts: [...prevState.contacts, newContact]}  ))
-  }
-
-  toggleContacts = () => {
-    this.setState(prevState => ({showContacts: !prevState.showContacts}))
-  }
-
-  toggleForm = () => {
-    this.setState(prevState => ({showForm: !prevState.showForm}))
-  }
-
-  sortContacts = ()  => {
-    this.setState(prevState => ({
-      contacts: [...prevState.contacts].sort(compareNames),
+    this.setState(prevState => ({ 
+      showForm: false, 
+      contacts: [...prevState.contacts, newContact]
     }))
-  };
+  }
 
- showForm = () => {
-   this.setState({showForm: true})
- }
+  // toggleForm = () => {
+  //   this.setState(prevState => ({showForm: !prevState.showForm}))
+  // }
+ 
   render() {
-    if(this.state.showForm) return <ContactForm  onSubmit={this.addContact} />
-    return (
-      <View style={styles.container}>
-        <Button title="toggle contacts" onPress={this.toggleContacts} />
-        <View style={styles.buttonPad}>
-          <Button  title="Add Contact" onPress={this.showForm} />
-        </View>
-          {this.state.showContacts &&  <ContactsList contacts={this.state.contacts}/>}
-      </View>
-    )
+    return <AppNavigator screenProps={{contacts: this.state.contacts, addContact: this.addContact}}/>
   }
 }
 

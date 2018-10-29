@@ -39,7 +39,11 @@ export default class ContactForm extends React.Component {
   
   validateForm = () => {
     const names = this.state.name.split(' ')
-    if(+this.state.phone >= 0 && this.state.phone.length === 10 && names.length >= 2 && names[0] && names[1]){
+    if(+this.state.phone >= 0 && 
+      this.state.phone.length === 10 && 
+      names.length >= 2 && names[0] && 
+      names[1]
+      ){
        this.setState({isFormValid: true})
     } else {
        this.setState({isFormValid: false})
