@@ -26,15 +26,19 @@ export default class ContactListScreen extends Component {
   }
 
   render() {
-    // return <View />; 
+
     return (
       <View style={styles.container}>
-        {/* <Button title="toggle contacts" onPress={this.toggleContacts} /> */}
-        {/* <View style={styles.buttonPad}>
-         <Button  title="Add Contact" onPress={this.showForm} />
-        </View> */}
           {this.state.showContacts &&  (
-          <ContactsList contacts={this.props.screenProps.contacts} />
+          <ContactsList 
+            contacts={this.props.screenProps.contacts} 
+            onSelectContact={(contact) => {
+              this.props.navigation.navigate('ContactDetails', {
+                phone: contact.phone,
+                name: contact.name
+              });
+            }}
+          />
           )}
       </View>
     )

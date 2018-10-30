@@ -1,11 +1,12 @@
 import React from 'react'
-import {View, Text, StyleSheet} from 'react-native'
+import {View,Text, TouchableOpacity, StyleSheet} from 'react-native'
+import PropTypes from 'prop-types'
 
 const Row = props => (
-  <View style={[styles.row, styles.center]}>
-    <Text  >{props.name}</Text>
+  <TouchableOpacity style={[styles.row, styles.center]} onPress={() => {props.onSelectContact(props)}}>
+    <Text>{props.name}</Text>
     <Text>{props.phone}</Text>
-  </View>
+  </TouchableOpacity>
 )
 
 
@@ -21,5 +22,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   }
 });
+
+Row.propTypes = {
+  name: PropTypes.string,
+  phone: PropTypes.string
+}
 
 export default  Row

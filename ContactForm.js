@@ -51,9 +51,9 @@ export default class ContactForm extends React.Component {
   }
 
   handleSubmit = () => {
-      this.props.onSubmit({name: this.state.name, phone: this.state.phone})
-    
+    this.props.onSubmit({name: this.state.name, phone: this.state.phone})  
   }
+
   render () {
     return (
       <KeyboardAvoidingView behavior="padding" style={styles.container}>

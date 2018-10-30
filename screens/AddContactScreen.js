@@ -14,7 +14,7 @@ export default class AddContactScreen extends Component {
   };
 
   render() {
-    return <ContactForm  onSubmit={this.addContact} />;
+    return <ContactForm  onSubmit={this.handleSubmit} />;
   }
 }
 

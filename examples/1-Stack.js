@@ -57,13 +57,12 @@ class ScreenComponentTwo extends React.Component {
   }
 }
 
-class ScreenComponentThree extends React.Component {
-  static navigationOptions = ({navigation}) => {
-    return {
-      headerTitle: `Number: ${navigation.getParam('number')}`,
-
-    }
-  } 
+  class ScreenComponentThree extends React.Component {
+    static navigationOptions = ({navigation}) => {
+      return {
+        headerTitle: `Number: ${navigation.getParam('number')}`,
+      }
+    } 
 
   render() {
     return(
